@@ -1,0 +1,36 @@
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/person
+    username: person
+    password: person
+    driverClassName: org.postgresql.Driver
+    max-active: 100
+    hikari:
+      maximum-pool-size: 50
+      minimum-idle: 10
+      connection-test-query: SELECT 1
+      data-source-properties:
+        connectTimeout: 300
+        socketTimeout: 300
+  flyway:
+    schemas: person
+    baseline-on-migrate: true #BE EXTRA CAREFUL WITH BASELINE
+    validate-on-migrate: true #true to validate DB
+    table: schema_version
+    enabled: true #true to enable flyway
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+swagger:
+  enable: true
+
+server:
+  port: 8765
+
+logging:
+  level:
+    ROOT: INFO
+    org.springframework: WARN
+    org.hibernate: INFO
